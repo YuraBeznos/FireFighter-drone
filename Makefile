@@ -1,4 +1,4 @@
-TARGETS=all build prepare check install clean uninstall format
+TARGETS=all build prepare check install clean uninstall format tests
 
 $(TARGETS):
 	cd src && make $@
