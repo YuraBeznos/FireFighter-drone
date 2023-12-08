@@ -19,8 +19,27 @@ Broker* broker;
  * "from", "to", "method"
  */
 vector<tuple<string, string, string>> allowed = {
-  { "aggregation", "navigation", "get_coordinates" },
-  { "navigation", "aggregation", "coordinates" }
+  { "fps", "communication", "" },                     // 1
+  { "communication", "fmac", "" },                    // 2
+  { "fmac", "eaic", "" },                             // 3
+  { "fmac", "ccu", "" },                              // 4
+  { "aggregation", "navigation", "get_coordinates" }, // 5, 16
+  { "navigation", "aggregation", "coordinates" },     // 6, 17
+  { "ccu", "aggregation", "" },                       // 9
+  { "aggregation", "ccu", "" },                       // 10
+  { "ccu", "movement", "" },                          // 11
+  { "movement", "ccu", "" },                          // 13
+  { "ccu", "extinguishing", "" },                     // 14 start
+  { "extinguishing", "eaic", "" },                    // 15 start
+  { "eaic", "aggregation", "" },                      // 18
+  { "aggregation", "eaic", "" },                      // 19
+  { "eaic", "extinguishing", "" },                    // 21
+  { "ccu", "situation", "" },                         // 24
+  { "situation", "ccu", "" },                         // 26
+  { "ccu", "extinguishing", "" },                     // 27 stop
+  { "extinguishing", "eaic", "" },                    // 28 stop
+  { "ccu", "communication", "" },                     // 30 started
+  { "communication", "fps", "started" }               // 31 started
 };
 
 bool
