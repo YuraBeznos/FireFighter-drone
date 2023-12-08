@@ -11,7 +11,7 @@
 - [x] FPS (Flight Plan Server) - Источник полётного задания
 - [x] Communication - Связь
 - [x] FMAC (Flight mission authenticity control) - Контроль аутентичности полётного задания
-- [ ] EAIC (extinguishing and ignition targets controller) - Контроль активации цепей тушения и поджига
+- [ ] EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
 - [ ] CCU (Central control unit) - Центральная система управления
 - [x] Aggregation - Комплексирование
 - [x] Navigation system - Навигация GNSS + ИНС
@@ -159,7 +159,7 @@ sub fmac
             pub eaic execute at var
             pub ccu execute at var
 ```
-### EAIC (extinguishing and ignition targets controller) - Контроль активации цепей тушения и поджига
+### EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
 ```
 fmac -> eaic
 - sub  4. execute extinguishing at A
