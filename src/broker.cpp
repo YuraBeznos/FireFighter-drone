@@ -24,7 +24,16 @@ Broker::on_connect(int rc)
 }
 
 void
-Broker::monitor(packet pkt)
+Broker::on_message(const struct mosquitto_message* message)
+{
+  const std::string payload{ reinterpret_cast<char*>(message->payload),
+                             static_cast<size_t>(message->payloadlen) };
+  packet pkt = explode(payload);
+  on_packet(pkt);
+}
+
+void
+Broker::to_monitor(packet pkt)
 {
   string message = pkt.str();
   publish(

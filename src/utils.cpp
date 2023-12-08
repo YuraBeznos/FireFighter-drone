@@ -36,7 +36,7 @@ explode(string val)
 
   for (long unsigned int i = 0; i < num_fields; i++) {
 
-    //cout << "vec[" << i << "]=" << vec[i];
+    // cout << "vec[" << i << "]=" << vec[i];
     switch (i) {
       case 0:
         pkt.from = vec[0];

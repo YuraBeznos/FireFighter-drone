@@ -8,7 +8,7 @@
 using namespace std;
 
 void
-Broker::on_message(const struct mosquitto_message* message)
+Broker::on_packet(packet pkt)
 {
 }
 

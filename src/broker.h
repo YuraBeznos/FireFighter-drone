@@ -16,7 +16,8 @@ public:
   ~Broker(){};
   void on_connect(int rc);
   void on_message(const struct mosquitto_message* message);
-  void monitor(packet pkt);
+  void on_packet(packet pkt);
+  void to_monitor(packet pkt);
   void on_subscribe(int mid, int qos_count, const int* granted_qos);
 };
 

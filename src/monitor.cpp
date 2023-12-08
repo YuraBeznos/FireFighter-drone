@@ -39,12 +39,8 @@ is_allowed(packet pkt)
 }
 
 void
-Broker::on_message(const struct mosquitto_message* message)
+Broker::on_packet(packet pkt)
 {
-
-  const std::string payload{ reinterpret_cast<char*>(message->payload),
-                             static_cast<size_t>(message->payloadlen) };
-  packet pkt = explode(payload);
   if (is_allowed(pkt)) {
     packet out_pkt = { pkt.from, pkt.to,   pkt.method,
                        pkt.val1, pkt.val2, pkt.val3 };

@@ -20,15 +20,16 @@ string coordinate = "0";
 
 Broker* broker;
 void
-get_coordinates() {
-      packet out_pkt = { me.c_str(), "navigation", "get_coordinates" };
-      broker->monitor(out_pkt);
+get_coordinates()
+{
+  packet out_pkt = { me.c_str(), "navigation", "get_coordinates" };
+  broker->to_monitor(out_pkt);
 }
 
 void
-set_coordinates(string new_coordinate) {
-    coordinate = new_coordinate;
-
+set_coordinates(string new_coordinate)
+{
+  coordinate = new_coordinate;
 }
 
 bool
@@ -41,17 +42,12 @@ check_coordinates_validity(string gps, string ins)
   return false;
 }
 
-
 void
-Broker::on_message(const struct mosquitto_message* message)
+Broker::on_packet(packet pkt)
 {
-  const std::string payload{ reinterpret_cast<char*>(message->payload),
-                             static_cast<size_t>(message->payloadlen) };
-  packet pkt = explode(payload);
-
   if (pkt.method == "get_coordinates") {
     packet out_pkt = { pkt.to, pkt.from, "coordinates", coordinate };
-    broker->monitor(out_pkt);
+    broker->to_monitor(out_pkt);
   } else if (pkt.method == "coordinates") {
     check_coordinates_validity(pkt.val1, pkt.val2);
   }

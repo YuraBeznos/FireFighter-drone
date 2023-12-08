@@ -10,17 +10,14 @@ string me = "communication";
 
 Broker* broker;
 void
-Broker::on_message(const struct mosquitto_message* message)
+Broker::on_packet(packet pkt)
 {
-  const std::string payload{ reinterpret_cast<char*>(message->payload),
-                             static_cast<size_t>(message->payloadlen) };
-  packet pkt = explode(payload);
   if (pkt.method == "start" && pkt.from == "fps") {
     packet out_pkt = { me, "fmac", pkt.method, pkt.val1 };
-    broker->monitor(out_pkt);
-  } else if(pkt.method == "started" && pkt.from == "ccu") {
+    broker->to_monitor(out_pkt);
+  } else if (pkt.method == "started" && pkt.from == "ccu") {
     packet out_pkt = { me, "fps", pkt.method, pkt.val1 };
-    broker->monitor(out_pkt);
+    broker->to_monitor(out_pkt);
   }
 }
 

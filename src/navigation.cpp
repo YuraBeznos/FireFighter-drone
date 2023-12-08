@@ -14,14 +14,11 @@ string coordinate = "0";
 Broker* broker;
 
 void
-Broker::on_message(const struct mosquitto_message* message)
+Broker::on_packet(packet pkt)
 {
-  const std::string payload{ reinterpret_cast<char*>(message->payload),
-                             static_cast<size_t>(message->payloadlen) };
-  packet pkt = explode(payload);
   if (pkt.method == "get_coordinates") {
     packet out_pkt = { pkt.to, pkt.from, "coordinates", coordinate };
-    broker->monitor(out_pkt);
+    broker->to_monitor(out_pkt);
   }
 }
 
