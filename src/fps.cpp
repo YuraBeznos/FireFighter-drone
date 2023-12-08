@@ -7,6 +7,7 @@
 #include <vector>
 
 /*
+ * FPS (Flight Plan Server) - Источник полётного задания
  */
 
 using namespace std;

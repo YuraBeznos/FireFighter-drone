@@ -2,7 +2,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <unistd.h>
+
 /*
+ * EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
  */
 
 using namespace std;

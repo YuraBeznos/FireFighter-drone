@@ -3,7 +3,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <unistd.h>
+
 /*
+ * Navigation system - Навигация GNSS + ИНС
  */
 
 using namespace std;

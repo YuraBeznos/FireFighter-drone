@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 /*
+ * Movement control - Управление перемещением
  */
 
 using namespace std;

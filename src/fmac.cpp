@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <vector>
+
 /*
+ * FMAC (Flight mission authenticity control) - Контроль аутентичности полётного задания
  */
 
 using namespace std;

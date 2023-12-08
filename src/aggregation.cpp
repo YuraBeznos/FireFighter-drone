@@ -11,6 +11,7 @@
 #include <vector>
 
 /*
+ * Aggregation - Комплексирование
  */
 
 using namespace std;

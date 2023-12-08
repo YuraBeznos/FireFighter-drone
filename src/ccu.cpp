@@ -2,7 +2,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <unistd.h>
+
 /*
+ * CCU (Central control unit) - Центральная система управления
  */
 
 using namespace std;

@@ -2,7 +2,9 @@
 #include <iostream>
 #include <stdio.h>
 #include <unistd.h>
+
 /*
+ * Extinguishing - Процедура тушения
  */
 
 using namespace std;
