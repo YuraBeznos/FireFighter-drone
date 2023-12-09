@@ -2,6 +2,8 @@
 #define _UTILS_H
 
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -24,5 +26,7 @@ int
 count(string str, char sep);
 packet
 explode(string val);
+bool
+is_allowed(packet pkt, vector<tuple<string, string, string>> allowed);
 
 #endif // _UTILS_H

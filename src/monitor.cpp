@@ -42,25 +42,10 @@ vector<tuple<string, string, string>> allowed = {
   { "communication", "fps", "started" }               // 31 started
 };
 
-bool
-is_allowed(packet pkt)
-{
-  tuple<string, string, string> suspect;
-  suspect = make_tuple(pkt.from, pkt.to, pkt.method);
-  if (find(allowed.begin(), allowed.end(), suspect) != allowed.end()) {
-    cout << "allowed from=" << pkt.from << ", to=" << pkt.to
-         << ", method=" << pkt.method << endl;
-    return true;
-  }
-  cout << "not allowed from=" << pkt.from << ", to=" << pkt.to
-       << ", method=" << pkt.method << endl;
-  return false;
-}
-
 void
 Broker::on_packet(packet pkt)
 {
-  if (is_allowed(pkt)) {
+  if (is_allowed(pkt, allowed)) {
     packet out_pkt = { pkt.from, pkt.to,   pkt.method,
                        pkt.val1, pkt.val2, pkt.val3 };
     string message = out_pkt.str();

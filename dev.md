@@ -354,7 +354,9 @@ Day 4 Dec 8
 - [x] simplify broker
 - [x] open dev log doc
 - [x] check tests - unit tests implemented
+
+Day 5 Dec 9
+- [x] add unit tests for monitor
 - [ ] add logic for other compoments
 - [ ] check eaic logic for stop fire/extinguishing
-- [ ] add unit tests for monitor
 - [ ] figure out how to test e2e

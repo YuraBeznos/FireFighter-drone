@@ -1,6 +1,8 @@
 #include "utils.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -61,4 +63,19 @@ explode(string val)
     }
   }
   return pkt;
+}
+
+bool
+is_allowed(packet pkt, vector<tuple<string, string, string>> allowed)
+{
+  tuple<string, string, string> suspect;
+  suspect = make_tuple(pkt.from, pkt.to, pkt.method);
+  if (find(allowed.begin(), allowed.end(), suspect) != allowed.end()) {
+    cout << "allowed from=" << pkt.from << ", to=" << pkt.to
+         << ", method=" << pkt.method << endl;
+    return true;
+  }
+  cout << "not allowed from=" << pkt.from << ", to=" << pkt.to
+       << ", method=" << pkt.method << endl;
+  return false;
 }

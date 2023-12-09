@@ -6,10 +6,10 @@ CXX=g++
 CXXFLAGS=-Og -ggdb -fno-sanitize-recover=all -fsanitize=address,alignment,undefined -Wall
 OBJS=utils.o broker.o
 EXECS= fps communication fmac eaic ccu aggregation navigation movement \
-		situation extinguishing monitor utils_unittest
+		situation extinguishing monitor utils_unittest monitor_unittest
 INCLUDE = -I/usr/include/ -I./
 LDFLAGS:=$(LDFLAGS) -lmosquittopp -lgtest -pthread
-TESTS=utils_unittest
+TESTS=utils_unittest monitor_unittest
 
 .PHONY: clean uninstall
 
@@ -22,8 +22,8 @@ all: $(OBJS) $(patsubst %.cpp, %.out, $(addsuffix .cpp, $(EXECS))) tests
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $(patsubst %.out, %.o, $@) -c $< 
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(INCLUDE) -o $(@:.out=) $(patsubst %.out, %.o, $@) $(OBJS)
 
-tests: $(TESTS)
-	$(binary_path)/$^
+tests:
+	$(foreach unittest, $(wildcard $(binary_path)*unittest), $(unittest);)
 
 check:
 	cppcheck *.cpp
