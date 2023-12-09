@@ -11,12 +11,12 @@
 - [x] FPS (Flight Plan Server) - Источник полётного задания
 - [x] Communication - Связь
 - [x] FMAC (Flight mission authenticity control) - Контроль аутентичности полётного задания
-- [ ] EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
-- [ ] CCU (Central control unit) - Центральная система управления
+- [x] EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
+- [x] CCU (Central control unit) - Центральная система управления
 - [x] Aggregation - Комплексирование
 - [x] Navigation system - Навигация GNSS + ИНС
 - [x] Movement control - Управление перемещением
-- [ ] Situation control - Контроль обстановки
+- [x] Situation control - Контроль обстановки
 - [x] Extinguishing - Процедура тушения
 
 ## Communications:
@@ -159,7 +159,7 @@ sub fmac
             pub eaic execute at var
             pub ccu execute at var
 ```
-### EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
+### [x] EAIC (extinguishing and ignition circuits controller) - Контроль активации цепей тушения и поджига
 ```
 fmac -> eaic
 - sub  4. execute extinguishing at A
@@ -181,13 +181,20 @@ eaic
 - private 29. disable extinguishing/fire
 ```
 ```
-???
 sub eaic
-    execute_action at var
-  
+    execute_action at var // 4
+        task = var
+    action_request // 15
+        pub aggregation get_coordinates // 18
+    coordinates
+        action_is_allowed at task // 20
+        pub extinguishing start_action //21
+        position_control // 23
+    stop_action // 28
+        task="" // 29
 ```
 
-### CCU (Central control unit) - Центральная система управления
+### [x] CCU (Central control unit) - Центральная система управления
 ```
 fmac -> ccu
 - sub  5. execute extinguishing at A
@@ -212,17 +219,18 @@ ccu -> communication
 ```
 ```
 sub ccu:
-    if start_action at A
-        pub aggregation get_coordinates
-    if coordinates
-        pub movement to A
-    if done_movement at A
-        pub extinguishing start action // extinguish/fire
-    if action_is_running
-        pub extinguishing stop_action
-        pub communication started_action at A
+    if start_action at A // 5
+        pub aggregation get_coordinates // 9
+    if coordinates //10
+        pub movement move to A // 11
+    if done_movement at A // 13
+        pub extinguishing start_action // 14 extinguish/fire
+    if action_is_running // 26
+        pub extinguishing stop_action // 27
+        pub communication started at A // 30
 loop:
-  pub situation is_action_running
+    pub situations is_action_in_progress // 24
+
 ```
 
 ### [x] Aggregation - Комплексирование
@@ -291,7 +299,7 @@ sub movement
     pub ccu done
 ```
 
-### Situation control - Контроль обстановки
+### [x] Situation control - Контроль обстановки
 ```
 ccu -> situation
  24. check if algo is running
@@ -300,13 +308,11 @@ situation
 situation -> ccu
  26. extinguishing is running
 ccu -> situation
-- pub 24. check if algo is running
-situation -> ccu
-- sub 26. extinguishing is running
 ```
 ```
 sub situation
   if is_action_running
+      pub from state.action_in_progress
 ```
 ### [x] Extinguishing - Процедура тушения
 ```
@@ -357,6 +363,7 @@ Day 4 Dec 8
 
 Day 5 Dec 9
 - [x] add unit tests for monitor
-- [ ] add logic for other compoments
-- [ ] check eaic logic for stop fire/extinguishing
+- [x] add logic for other compoments
+- [x] check eaic logic for stop fire/extinguishing
+
 - [ ] figure out how to test e2e
