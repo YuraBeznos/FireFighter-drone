@@ -1,5 +1,7 @@
 TARGETS=all build prepare check install clean uninstall format tests
 
+.PHONY: docs
+
 $(TARGETS):
 	cd src && make $@
 
@@ -11,3 +13,7 @@ docker:
 
 run: docker
 	docker-compose up
+
+docs:
+	doxygen cfg/Doxyfile
+	doxybook2 -c cfg/doxybook.json --input doxygen/xml/ --output docs
