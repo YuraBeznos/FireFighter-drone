@@ -7,12 +7,6 @@ title: src/broker.h
 
 
 
-## Namespaces
-
-| Name           |
-| -------------- |
-| **[std](Namespaces/namespacestd.md)**  |
-
 ## Classes
 
 |                | Name           |
@@ -54,4 +48,4 @@ public:
 
 -------------------------------
 
-Updated on 2023-12-10 at 12:45:08 +0300
+Updated on 2023-12-10 at 12:51:12 +0300
