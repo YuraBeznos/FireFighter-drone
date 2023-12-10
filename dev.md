@@ -366,4 +366,7 @@ Day 5 Dec 9
 - [x] add logic for other compoments
 - [x] check eaic logic for stop fire/extinguishing
 
+Day 6 Dec 10
+- [x] doxygen -> doxybook2 -> code to *.md generation
+
 - [ ] figure out how to test e2e
