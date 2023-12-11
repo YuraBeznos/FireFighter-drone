@@ -395,4 +395,6 @@ Day 5 Dec 9
 Day 6 Dec 10
 - [x] doxygen -> doxybook2 -> code to *.md generation
 
+Day 7 Dec 11
+- [x] Interconnection and allowed communications docs/schema 
 - [ ] figure out how to test e2e
