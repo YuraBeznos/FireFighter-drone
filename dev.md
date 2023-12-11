@@ -35,25 +35,27 @@
 ### Interconnection and allowed communications
 ```plantuml:md-interconnection
 @startuml
-(fps) --> (communication) : start at val
-communication --> (fmac) : start at val
-communication --> (fps) : started at val \n(not_started at val)
-fmac --> (eaic) : execute at val
-fmac --> (ccu) : execute at val
-eaic -> (aggregation) : get_coordinates
-eaic --> (extinguishing) : start_action
-ccu -> (aggregation) : get_coordinates
-ccu --> (movement) : move to val
-ccu --> (extinguishing) : start_action
-ccu --> (situation) : is_action_running
-ccu --> (communication) : started at val
-aggregation --> (navigation) : get_coordinates
-aggregation --> (ccu) : coordinates with val
-aggregation --> (eaic) : coordinates with val
-navigation --> (aggregation) : coordinates with val
-movement --> (ccu) : done at val
-situation --> (ccu) : action_is_running
-extinguishing --> (eaic) : stop_action
+(fps) --> (communication) : 1. start at val
+communication --> (fmac) : 2. start at val
+communication --> (fps) : 31. started at val \n(not_started at val)
+fmac --> (eaic) : 3. execute at val
+fmac --> (ccu) : 4. execute at val
+eaic -> (aggregation) : 18. get_coordinates
+eaic --> (extinguishing) : 21. start_action
+ccu -> (aggregation) : 9. get_coordinates
+ccu --> (movement) : 11. move to val
+ccu --> (extinguishing) : 14. start_action
+ccu --> (extinguishing) : stop_action
+ccu --> (situation) : 22. is_action_running
+ccu --> (communication) : 30. started at val
+aggregation --> (navigation) : 5. 16. get_coordinates
+aggregation --> (ccu) : 10. coordinates with val
+aggregation --> (eaic) : 19. coordinates with val
+navigation --> (aggregation) : 6. 17. coordinates with val
+movement --> (ccu) : 13. done at val
+situation --> (ccu) : 23. action_is_running
+extinguishing --> (eaic) : 15. confirm_action
+extinguishing --> (eaic) : 28. stop_action
 @enduml
 ```
 ![](./docs/md-interconnection.svg)
