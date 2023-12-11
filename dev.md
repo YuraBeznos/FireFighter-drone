@@ -33,7 +33,7 @@
   - from,to,method[,param1,param2]
 
 ### Interconnection and allowed communications
-```plantuml
+```plantuml:md-interconnection
 @startuml
 (fps) --> (communication) : start at val
 communication --> (fmac) : start at val
@@ -56,6 +56,8 @@ situation --> (ccu) : action_is_running
 extinguishing --> (eaic) : stop_action
 @enduml
 ```
+![](./md-interconnection.svg)
+
 ## Logic (from plantuml):
 ```
 fps -> communication
