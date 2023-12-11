@@ -19,14 +19,14 @@ void
 Broker::on_packet(packet pkt)
 {
   packet out_pkt;
-  if (pkt.method == "start_action") { // step 5
+  if (pkt.method == "execute") { // step 5
     destination = pkt.val1;
     out_pkt = { me.c_str(), "aggregation", "get_coordinates" }; // step 9
     broker->to_monitor(out_pkt);
-  } else if (pkt.method == "coordinates") {                           // step 10
+  } else if (pkt.method == "coordinates") {                    // step 10
     out_pkt = { me.c_str(), "movement", "move", destination }; // step 11
     broker->to_monitor(out_pkt);
-  } else if (pkt.method == "done_movement") {                         // step 13
+  } else if (pkt.method == "done") {                  // step 13
     out_pkt = { me.c_str(), "extinguishing", "start_action" }; // step 14
     is_action_running = true;
     broker->to_monitor(out_pkt);
@@ -59,8 +59,8 @@ main(int argc, char** argv)
       };                           // step 24
       broker->to_monitor(out_pkt); // step 30
     }
+    cout << "working" << endl;
+    sleep(10);
   }
-  cout << "working" << endl;
-  sleep(10);
   return 0;
 }

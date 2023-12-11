@@ -30,7 +30,7 @@ Broker::on_packet(packet pkt)
 {
   if (pkt.method == "execute") { // step 4
     task = pkt.val1;
-  } else if (pkt.method == "action_request") {                 // step 15
+  } else if (pkt.method == "confirm_action") {                 // step 15
     packet out_pkt = { me, "aggregation", "get_coordinates" }; // step 18
     broker->to_monitor(out_pkt);
   } else if (pkt.method == "coordinates") {

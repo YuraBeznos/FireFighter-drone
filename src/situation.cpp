@@ -28,6 +28,11 @@ Broker::on_packet(packet pkt)
 int
 main(int argc, char** argv)
 {
+  mosqpp::lib_init();
+  broker = new Broker(me);
+  broker->subscribe(NULL, me.c_str());
+  broker->loop_start();
+
   cout << "start: " << argv[0] << endl;
   while (1) {
     cout << "working: " << argv[0] << endl;

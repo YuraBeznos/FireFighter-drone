@@ -45,7 +45,7 @@ eaic --> (extinguishing) : 21. start_action
 ccu -> (aggregation) : 9. get_coordinates
 ccu --> (movement) : 11. move to val
 ccu --> (extinguishing) : 14. start_action
-ccu --> (extinguishing) : stop_action
+ccu --> (extinguishing) : 27. stop_action
 ccu --> (situation) : 22. is_action_running
 ccu --> (communication) : 30. started at val
 aggregation --> (navigation) : 5. 16. get_coordinates

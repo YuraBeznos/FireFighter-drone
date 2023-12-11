@@ -31,6 +31,16 @@ services:
     container_name: fps
     depends_on:
       - broker
+      - monitor
+      - communication
+      - fmac
+      - eaic
+      - ccu
+      - aggregation
+      - navigation
+      - movement
+      - situation
+      - extinguishing
     command:
       fps
  
