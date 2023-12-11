@@ -56,7 +56,7 @@ situation --> (ccu) : action_is_running
 extinguishing --> (eaic) : stop_action
 @enduml
 ```
-![](./md-interconnection.svg)
+![](./docs/md-interconnection.svg)
 
 ## Logic (from plantuml):
 ```
