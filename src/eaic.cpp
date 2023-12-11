@@ -28,7 +28,7 @@ Broker* broker;
 void
 Broker::on_packet(packet pkt)
 {
-  if (pkt.method == "execute_action") { // step 4
+  if (pkt.method == "execute") { // step 4
     task = pkt.val1;
   } else if (pkt.method == "action_request") {                 // step 15
     packet out_pkt = { me, "aggregation", "get_coordinates" }; // step 18

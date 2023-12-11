@@ -13,14 +13,15 @@ using namespace std;
 string me = "situation";
 bool running = true;
 
-
 Broker* broker;
 void
 Broker::on_packet(packet pkt)
 {
   if (pkt.method == "is_action_running") {
-    packet out_pkt = { me.c_str(), pkt.from, "action_is_running" };
-    broker->to_monitor(out_pkt);
+    if (running) {
+      packet out_pkt = { me.c_str(), pkt.from, "action_is_running" };
+      broker->to_monitor(out_pkt);
+    }
   }
 }
 

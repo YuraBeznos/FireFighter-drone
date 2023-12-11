@@ -20,7 +20,7 @@ Broker* broker;
 void
 Broker::on_packet(packet pkt)
 {
-  if (pkt.method == "started") {
+  if (pkt.method == "started") { // step 31
     cout << pkt.method << " task at " << pkt.val1 << endl;
     start_send = false;
   } else if (pkt.method == "not_started") {
@@ -53,7 +53,7 @@ main(int argc, char** argv)
 
   while (1) {
     if (!start_send) {
-      start_task();
+      start_task(); // step 1
     }
     cout << "working" << endl;
     sleep(10);
