@@ -31,8 +31,8 @@ stop_action()
 void
 Broker::on_packet(packet pkt)
 {
-  if (pkt.method == "action") {
-    packet out_pkt = { me.c_str(), "eaic", "action" };
+  if (pkt.method == "start_action") {
+    packet out_pkt = { me.c_str(), "eaic", "confirm_action" };
     broker->to_monitor(out_pkt);
   } else if (pkt.method == "start_action") {
     proceed_action();

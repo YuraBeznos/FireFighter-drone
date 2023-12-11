@@ -19,26 +19,26 @@ Broker* broker;
  * "from", "to", "method"
  */
 vector<tuple<string, string, string>> allowed = {
-  { "fps", "communication", "" },                     // 1
-  { "communication", "fmac", "" },                    // 2
-  { "fmac", "eaic", "" },                             // 3
-  { "fmac", "ccu", "" },                              // 4
+  { "fps", "communication", "start" },                     // 1
+  { "communication", "fmac", "start" },                    // 2
+  { "fmac", "eaic", "execute" },                             // 3
+  { "fmac", "ccu", "execute" },                              // 4
   { "aggregation", "navigation", "get_coordinates" }, // 5, 16
   { "navigation", "aggregation", "coordinates" },     // 6, 17
-  { "ccu", "aggregation", "" },                       // 9
-  { "aggregation", "ccu", "" },                       // 10
-  { "ccu", "movement", "" },                          // 11
-  { "movement", "ccu", "" },                          // 13
-  { "ccu", "extinguishing", "" },                     // 14 start
-  { "extinguishing", "eaic", "" },                    // 15 start
-  { "eaic", "aggregation", "" },                      // 18
-  { "aggregation", "eaic", "" },                      // 19
-  { "eaic", "extinguishing", "" },                    // 21
-  { "ccu", "situation", "" },                         // 24
-  { "situation", "ccu", "" },                         // 26
-  { "ccu", "extinguishing", "" },                     // 27 stop
-  { "extinguishing", "eaic", "" },                    // 28 stop
-  { "ccu", "communication", "" },                     // 30 started
+  { "ccu", "aggregation", "get_coordinates" },                       // 9
+  { "aggregation", "ccu", "coordinates" },                       // 10
+  { "ccu", "movement", "move" },                          // 11
+  { "movement", "ccu", "done" },                          // 13
+  { "ccu", "extinguishing", "start_action" },                     // 14 start
+  { "extinguishing", "eaic", "confirm_action" },                    // 15 start
+  { "eaic", "aggregation", "get_coordinates" },                      // 18
+  { "aggregation", "eaic", "coordinates" },                      // 19
+  { "eaic", "extinguishing", "start_action" },                    // 21
+  { "ccu", "situation", "is_action_running" },                         // 24
+  { "situation", "ccu", "action_is_running" },                         // 26
+  { "ccu", "extinguishing", "stop_action" },                     // 27 stop
+  { "extinguishing", "eaic", "stop_action" },                    // 28 stop
+  { "ccu", "communication", "started" },                     // 30 started
   { "communication", "fps", "started" }               // 31 started
 };
 
