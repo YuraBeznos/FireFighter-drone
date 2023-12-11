@@ -398,6 +398,7 @@ Day 6 Dec 10
 Day 7 Dec 11
 - [x] Interconnection and allowed communications docs/schema 
 
+
 - [ ] monitor allow rules check
 - [ ] backdoor interface via tcp
 - [ ] figure out how to test e2e
