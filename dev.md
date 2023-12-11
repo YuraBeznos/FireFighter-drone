@@ -32,6 +32,30 @@
   - simple csv
   - from,to,method[,param1,param2]
 
+### Interconnection and allowed communications
+```plantuml
+@startuml
+(fps) --> (communication) : start at val
+communication --> (fmac) : start at val
+communication --> (fps) : started at val \n(not_started at val)
+fmac --> (eaic) : execute at val
+fmac --> (ccu) : execute at val
+eaic -> (aggregation) : get_coordinates
+eaic --> (extinguishing) : start_action
+ccu -> (aggregation) : get_coordinates
+ccu --> (movement) : move to val
+ccu --> (extinguishing) : start_action
+ccu --> (situation) : is_action_running
+ccu --> (communication) : started at val
+aggregation --> (navigation) : get_coordinates
+aggregation --> (ccu) : coordinates with val
+aggregation --> (eaic) : coordinates with val
+navigation --> (aggregation) : coordinates with val
+movement --> (ccu) : done at val
+situation --> (ccu) : action_is_running
+extinguishing --> (eaic) : stop_action
+@enduml
+```
 ## Logic (from plantuml):
 ```
 fps -> communication
@@ -229,7 +253,7 @@ sub ccu:
         pub extinguishing stop_action // 27
         pub communication started at A // 30
 loop:
-    pub situations is_action_in_progress // 24
+    pub situation is_action_in_progress // 24
 
 ```
 
