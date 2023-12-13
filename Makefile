@@ -29,3 +29,6 @@ e2e-prepare: docker-compose-up
 
 e2e-tests: e2e-prepare e2e-test-a e2e-test-b
 	docker-compose stop
+
+tests: e2e-tests
+	$(MAKE) -C src
