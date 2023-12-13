@@ -62,7 +62,7 @@ extinguishing --> (eaic) : 15. confirm_action
 extinguishing --> (eaic) : 28. stop_action
 @enduml
 ```
-![](./docs/md-interconnection.svg)
+![](./md-interconnection.svg)
 
 ## Logic (from plantuml):
 ```
