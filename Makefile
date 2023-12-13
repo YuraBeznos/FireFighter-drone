@@ -1,4 +1,4 @@
-TARGETS=all build prepare check install clean uninstall format unittests e2e-test-a e2e-test-b
+TARGETS=all build prepare check install clean uninstall format unittests e2e-test-a e2e-test-b policy-tests
 
 .PHONY: docs e2e-clean docker-compose-stop
 .NOTPARALLEL: e2e-tests
@@ -11,6 +11,9 @@ mosquitto: docker
 
 docker:
 	docker build ./ -t ffd
+
+docker-clean:
+	docker ps -a -q |xargs docker rm
 
 run: docker
 	docker-compose up
@@ -31,4 +34,3 @@ e2e-tests: e2e-prepare e2e-test-a e2e-test-b
 	docker-compose stop
 
 tests: e2e-tests
-	$(MAKE) -C src
