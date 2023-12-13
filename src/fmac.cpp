@@ -38,6 +38,9 @@ Broker::on_packet(packet pkt)
       broker->to_monitor(out_pkt);
       out_pkt = { me.c_str(), "ccu", "execute", task };
       broker->to_monitor(out_pkt);
+    } else {
+      packet out_pkt = { me.c_str(), "communication", "not_authentic_task", task };
+      broker->to_monitor(out_pkt);
     }
   }
 }

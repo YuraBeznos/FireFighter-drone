@@ -35,10 +35,11 @@
 ### Interconnection and allowed communications
 ```plantuml:md-interconnection
 @startuml
-(fps) --> (communication) : 1. start at val
+(fps) --> (communication) : 1. start at val\n(via http)
 communication --> (fmac) : 2. start at val
-communication --> (fps) : 31. started at val \n(not_started at val)
+communication --> (fps) : 31. started at val \n(not_authentic_task val)\n(via http)
 fmac --> (eaic) : 3. execute at val
+fmac --> (communication) : not_authentic_task val
 fmac --> (ccu) : 4. execute at val
 eaic -> (aggregation) : 18. get_coordinates
 eaic --> (extinguishing) : 21. start_action
@@ -135,17 +136,13 @@ communication -> fps
 sub 31. extinguishing/fire at A has been started
 ```
 ```
-tasks = {A,B,C}
-sub fps
-    if started at A:
-        print started at A
-    if not_started at A:
-        print not_started at A
-
-loop:
-    pop task
-    pub communication start at task
-    wait_for_a_task
+listen // for commands and an interchange data with the communication
+    if started at val
+        send client started at val // via web interface
+    if start at val
+        send communication start at val
+    if not_authentic_task at val
+        send client not_authentic_task at val
 ```
 
 ### [x] Communication - Связь
@@ -160,13 +157,14 @@ communication -> fps
 - pub 31. extinguishing/fire at A has been started
 ```
 ```
-sub communication
-    if start at var:
+listen
+    if start at val
         pub fmac start at var
+sub communication
     if started at var:
-        pub fps started at var
-    if not_started:
-        pub fps not_started at var
+        send fps started at var
+    if not_authentic_task at var:
+        send fps not_authentic_task at var
 ```
 
 ### [x] FMAC (Flight mission authenticity control) - Контроль аутентичности полётного задания
@@ -402,5 +400,6 @@ Day 7 Dec 11
 - [x] monitor allow rules check
 
 Day 8 Dec 12
-- [ ] backdoor interface via tcp
+- [x] interface via tcp for fps and communication
+
 - [ ] figure out how to test e2e

@@ -19,7 +19,6 @@ Broker* broker;
  * "from", "to", "method"
  */
 vector<tuple<string, string, string>> allowed = {
-  { "fps", "communication", "start" },                     // 1
   { "communication", "fmac", "start" },                    // 2
   { "fmac", "eaic", "execute" },                             // 3
   { "fmac", "ccu", "execute" },                              // 4
@@ -39,7 +38,7 @@ vector<tuple<string, string, string>> allowed = {
   { "ccu", "extinguishing", "stop_action" },                     // 27 stop
   { "extinguishing", "eaic", "stop_action" },                    // 28 stop
   { "ccu", "communication", "started" },                     // 30 started
-  { "communication", "fps", "started" }               // 31 started
+  { "fmac", "communication", "not_authentic_task" }
 };
 
 void
