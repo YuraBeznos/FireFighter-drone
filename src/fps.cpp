@@ -37,7 +37,7 @@ public:
               "text/html\r\nConnection: close\r\n\r\n");
     mg_printf(
       conn,
-      "<html><head><meta http-equiv=\"refresh\" content=\"5\"><body>\r\n");
+      "<html><head><meta http-equiv=\"refresh\" content=\"5\"></head><body>\r\n");
     if (tasks.size() > 0) {
       mg_printf(conn, "<h2>Tasks status:</h2><pre>\r\n");
       for (auto i : tasks) {
@@ -47,17 +47,17 @@ public:
     }
     mg_printf(conn, "<h2>FPS interface</h2>\r\n");
     mg_printf(conn,
-              "<form action=\"api\" method=\"get\">"
-              "To start the task A (allowed)"
-              "<input name=\"task\" value=\"A\"\\>"
+              "<form action=\"/api\" method=\"get\">\r\n"
+              "To start the task A (allowed)\r\n"
+              "<input type=\"text\" name=\"task\" value=\"A\"/>\r\n"
               "<input type=\"submit\" value=\"start\" "
-              "name=\"command\" \\>click here</form>\r\n");
+              "name=\"command\"></form>\r\n");
     mg_printf(conn,
-              "<form action=\"api\" method=\"get\">"
-              "To start the task B (not allowed)"
-              "<input name=\"task\" value=\"B\" \\>"
+              "<form action=\"/api\" method=\"get\">\r\n"
+              "To start the task B (not allowed)\r\n"
+              "<input type=\"text\" name=\"task\" value=\"B\" />\r\n"
               "<input type=\"submit\" value=\"start\" "
-              "name=\"command\" \\>click here</form>\r\n");
+              "name=\"command\"></form>\r\n");
     mg_printf(conn, "</body></html>\r\n");
     return true;
   }
