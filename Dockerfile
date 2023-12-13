@@ -16,6 +16,8 @@ RUN apt-get update && \
         libgtest-dev \
         libgmock-dev \
         libtbb-dev \
+        libcivetweb-dev \
+        libcivetweb1 \
         less \
         vim \
         unzip \
