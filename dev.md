@@ -19,6 +19,9 @@
 - [x] Situation control - Контроль обстановки
 - [x] Extinguishing - Процедура тушения
 
+## Interface
+ - FPS is listening on 8081 port, so accessible via http://localhost:8081
+
 ## Communications:
  - all modules have queues
    - send requests go into monitor queue
@@ -28,7 +31,7 @@
    - checks if allowed
    - publish to name
  
-## Protocol:
+## Protocol (used in mosquitto messages):
   - simple csv
   - from,to,method[,param1,param2]
 
@@ -402,4 +405,6 @@ Day 7 Dec 11
 Day 8 Dec 12
 - [x] interface via tcp for fps and communication
 
-- [ ] figure out how to test e2e
+Day 9 Dec 13
+- [x] e2e tests
+- [x] docs
