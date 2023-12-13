@@ -5,6 +5,7 @@
 - [Protocol](#Protocol)
 - [Logic](#logic-from-plantuml)
 - [Logic with pseudocode](#logic-with-pseudocode)
+- [Features](#features)
 - [Dev Plan log](#dev-plan-log)
 
 ## Terms and progress:
@@ -367,6 +368,30 @@ sub extinguishing
     stop_action
         pub eaic stop_action
 ```
+## Features
+- Dockerfile
+  - Contains everything what might be required for developer to build and test.
+    - Runs unit tests on build stage to make sure that our code is in a good shape.
+    - Builds doxygen generated docs in md format
+  - It has one huge layer which builds once and small layers.
+  - One image for every component for simplicity
+- Mosquitto
+  - Uses configuration file cfg/mosquitto.conf
+  - allow anonymous access for simplicity
+  - starts as separate container
+- Docker compose
+  - Uses the same image for everythig, for simplicity
+  - FPS depends from every other container to make sure that web UI is workable
+- Makefiles
+  - Two Makefiles
+  - Might be used to build project on a host or inside a container
+- Doxygen + doxybook2
+  - Generates .md documentation by `make docs` in docs folder
+  - configuration for Doxygen is cfg/Doxyfile
+  - configuration for doxybook2 is cfg/doxybook.json
+- Render PlantUML
+  - Auto generation of svg from plantuml in markdown or from plantuml files
+  - Configuration .github/workflows/generate-plantuml-action.yaml
 
 ## Dev Plan log:
 Day 1 Dec 5
