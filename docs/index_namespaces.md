@@ -8,6 +8,8 @@ title: Namespaces
 
 
 
+* **namespace [http](Namespaces/namespacehttp.md)** 
+    * **namespace [detail](Namespaces/namespacehttp_1_1detail.md)** 
 * **namespace [mosqpp](Namespaces/namespacemosqpp.md)** 
 * **namespace [std](Namespaces/namespacestd.md)** 
 
@@ -15,4 +17,4 @@ title: Namespaces
 
 -------------------------------
 
-Updated on 2023-12-10 at 12:51:12 +0300
+Updated on 2023-12-13 at 13:54:01 +0300

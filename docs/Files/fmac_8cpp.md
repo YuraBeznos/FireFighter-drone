@@ -112,6 +112,9 @@ Broker::on_packet(packet pkt)
       broker->to_monitor(out_pkt);
       out_pkt = { me.c_str(), "ccu", "execute", task };
       broker->to_monitor(out_pkt);
+    } else {
+      packet out_pkt = { me.c_str(), "communication", "not_authentic_task", task };
+      broker->to_monitor(out_pkt);
     }
   }
 }
@@ -133,4 +136,4 @@ main(int argc, char** argv)
 
 -------------------------------
 
-Updated on 2023-12-10 at 12:51:12 +0300
+Updated on 2023-12-13 at 13:54:01 +0300

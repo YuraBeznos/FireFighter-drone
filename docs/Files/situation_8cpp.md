@@ -77,20 +77,26 @@ using namespace std;
 string me = "situation";
 bool running = true;
 
-
 Broker* broker;
 void
 Broker::on_packet(packet pkt)
 {
   if (pkt.method == "is_action_running") {
-    packet out_pkt = { me.c_str(), pkt.from, "action_is_running" };
-    broker->to_monitor(out_pkt);
+    if (running) {
+      packet out_pkt = { me.c_str(), pkt.from, "action_is_running" };
+      broker->to_monitor(out_pkt);
+    }
   }
 }
 
 int
 main(int argc, char** argv)
 {
+  mosqpp::lib_init();
+  broker = new Broker(me);
+  broker->subscribe(NULL, me.c_str());
+  broker->loop_start();
+
   cout << "start: " << argv[0] << endl;
   while (1) {
     cout << "working: " << argv[0] << endl;
@@ -103,4 +109,4 @@ main(int argc, char** argv)
 
 -------------------------------
 
-Updated on 2023-12-10 at 12:51:12 +0300
+Updated on 2023-12-13 at 13:54:01 +0300
