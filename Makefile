@@ -1,4 +1,4 @@
-TARGETS=all build prepare check install clean uninstall format unittests e2e-test-a e2e-test-b policy-tests
+TARGETS=all build prepare prepare-20 check install clean uninstall format unittests e2e-test-a e2e-test-b policy-tests
 
 .PHONY: docs e2e-clean docker-compose-stop
 .NOTPARALLEL: e2e-tests
