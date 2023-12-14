@@ -37,7 +37,13 @@ prepare:
 		make && \
 		cp /tmp/.build/lib/*.so* /usr/lib/x86_64-linux-gnu/ && \
 		ldconfig && \
-		rm -rf /tmp/.build
+		rm -rf /tmp/.build && \
+		mkdir /tmp/.doxy && \
+		cd /tmp/.doxy && \
+		curl -L -s -o doxybook2.zip https://github.com/matusnovak/doxybook2/releases/download/v1.5.0/doxybook2-linux-amd64-v1.5.0.zip && \
+		unzip *.zip && \
+		mv bin/* /usr/bin/ && \
+		rm -rf /tmp/.doxy
 
 %.o: %.cpp %.h
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $< 
