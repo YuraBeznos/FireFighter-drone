@@ -17,7 +17,10 @@ SHELL=/bin/bash
 all: $(OBJS) $(patsubst %.cpp, %.out, $(addsuffix .cpp, $(EXECS))) unittests
 
 prepare:
-	sudo apt install -y \
+		sudo rm -Rf /tmp/firefighter-drone && \
+		mkdir -p /tmp/firefighter-drone/gtest && \
+		mkdir -p /tmp/firefighter-drone/doxy && \
+		sudo apt install -y \
 		mosquitto-clients \
 		libmosquittopp1 \
 		libmosquittopp-dev \
@@ -31,26 +34,22 @@ prepare:
 		unzip \
 		curl \
 		doxygen && \
-		mkdir /tmp/.build && \
-		cd /tmp/.build && \
+		cd /tmp/firefighter-drone/gtest && \
 		cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/usr/lib -DCMAKE_BUILD_TYPE=RELEASE /usr/src/gtest/ && \
 		make && \
-		cp /tmp/.build/lib/*.so* /usr/lib/x86_64-linux-gnu/ && \
-		ldconfig && \
-		rm -rf /tmp/.build && \
-		mkdir /tmp/.doxy && \
-		cd /tmp/.doxy && \
+		sudo cp /tmp/firefighter-drone/gtest/lib/*.so* /usr/lib/x86_64-linux-gnu/ && \
+		sudo ldconfig && \
+		cd /tmp/firefighter-drone/doxy && \
 		curl -L -s -o doxybook2.zip https://github.com/matusnovak/doxybook2/releases/download/v1.5.0/doxybook2-linux-amd64-v1.5.0.zip && \
 		unzip *.zip && \
-		mv bin/* /usr/bin/ && \
-		rm -rf /tmp/.doxy
+		sudo mv bin/* /usr/bin/ && \
+		sudo rm -rf /tmp/firefighter-drone
 
 prepare-20:
 		sudo rm -Rf /tmp/firefighter-drone && \
 		mkdir -p /tmp/firefighter-drone/gtest && \
 		mkdir -p /tmp/firefighter-drone/doxy && \
 		mkdir -p /tmp/firefighter-drone/civetweb && \
-		mkdir -p /tmp/firefighter-drone/ && \
 		sudo apt-get update && \
 		sudo apt install -y \
 		mosquitto-clients \
