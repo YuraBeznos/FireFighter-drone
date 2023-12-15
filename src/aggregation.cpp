@@ -1,14 +1,10 @@
 #include "broker.h"
 #include "utils.h"
 #include <iostream>
-#include <map>
-#include <memory>
 #include <mosquittopp.h>
 #include <stdio.h>
 #include <string>
-#include <string_view>
 #include <unistd.h>
-#include <vector>
 
 /*
  * Aggregation - Комплексирование

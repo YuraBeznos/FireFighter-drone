@@ -3,7 +3,6 @@
 #include "broker.h"
 #include "utils.h"
 #include <iostream>
-#include <stdio.h>
 #include <string>
 #include <unistd.h>
 #include <vector>

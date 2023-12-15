@@ -1,6 +1,5 @@
 #include "broker.h"
 #include "utils.h"
-#include <algorithm>
 #include <iostream>
 #include <string>
 #include <tuple>
