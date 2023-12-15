@@ -1,32 +1,22 @@
 #include "broker.h"
 #include "utils.h"
 #include "gtest/gtest.h"
-#include <string>
 
 void
 Broker::on_packet(packet pkt)
 {
 }
 
-/*
- * allowed communications list
- * "from", "to", "method"
- */
-vector<tuple<string, string, string>> allowed = {
-  { "aggregation", "navigation", "get_coordinates" }, 
-  { "navigation", "aggregation", "coordinates" } 
-};
-
 TEST(test_utils, monitor_pkt_is_allowed)
 {
   packet pkt = { "navigation", "aggregation", "coordinates" };
-  EXPECT_EQ(is_allowed(pkt, allowed), true);
+  EXPECT_EQ(is_allowed(pkt), true);
 }
 
 TEST(test_utils, monitor_pkt_is_not_allowed)
 {
   packet pkt = { "navigation", "ccu", "coordinates" };
-  EXPECT_EQ(is_allowed(pkt, allowed), false);
+  EXPECT_EQ(is_allowed(pkt), false);
 }
 
 int

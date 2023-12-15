@@ -27,6 +27,6 @@ count(string str, char sep);
 packet
 explode(string val);
 bool
-is_allowed(packet pkt, vector<tuple<string, string, string>> allowed);
+is_allowed(packet pkt);
 
 #endif // _UTILS_H

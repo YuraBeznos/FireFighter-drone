@@ -1,3 +1,4 @@
+#include "policies.h"
 #include "utils.h"
 #include <algorithm>
 #include <iostream>
@@ -66,7 +67,7 @@ explode(string val)
 }
 
 bool
-is_allowed(packet pkt, vector<tuple<string, string, string>> allowed)
+is_allowed(packet pkt)
 {
   tuple<string, string, string> suspect;
   suspect = make_tuple(pkt.from, pkt.to, pkt.method);
