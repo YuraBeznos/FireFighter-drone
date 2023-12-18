@@ -40,12 +40,14 @@ RUN apt-get update && \
     rm -rf /tmp/.doxy
 
 
+COPY ./Makefile /opt/
 COPY ./src /opt/src
 COPY ./cfg/mosquitto.conf /etc/mosquitto/conf.d/
 COPY ./cfg/Doxyfile /opt/
 COPY ./cfg/doxybook.json /opt/
 
-RUN cd /opt/src && \
+RUN cd /opt && \
+    make -p /opt/build && \
     (make clean || exit 0) && \
     make && \
     make install && \
