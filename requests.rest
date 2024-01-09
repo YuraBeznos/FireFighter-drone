@@ -1,0 +1,11 @@
+### Проверить журнал задач
+
+GET http://localhost:8081/api?tasks_log=true HTTP/1.1
+
+### Поставить задачу на выполнение A (аутентичную)
+
+GET http://localhost:8081/api?command=start&task=A
+
+### Поставить задачу на выполнение B (не аутентичную)
+
+GET http://localhost:8081/api?command=start&task=B

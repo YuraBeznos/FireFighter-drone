@@ -1,0 +1,150 @@
+version: '3.4'
+
+services:
+  broker:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: broker
+    ports:
+      - "1818:1818"
+    command:
+      mosquitto -v -c /etc/mosquitto/conf.d/mosquitto.conf
+
+  monitor:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: monitor
+    depends_on:
+      - broker
+    command:
+      monitor
+   
+  fps:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: fps
+    ports:
+      - "8081:8081"
+    depends_on:
+      - broker
+      - monitor
+      - communication
+      - fmac
+      - eaic
+      - ccu
+      - aggregation
+      - navigation
+      - movement
+      - situation
+      - extinguishing
+    command:
+      fps
+ 
+  communication:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: communication
+    depends_on:
+      - broker
+    command:
+      communication
+ 
+  fmac:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: fmac
+    depends_on:
+      - broker
+    command:
+      fmac
+ 
+  eaic:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: eaic
+    depends_on:
+      - broker
+    command:
+      eaic
+ 
+  ccu:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: ccu
+    depends_on:
+      - broker
+    command:
+      ccu
+ 
+  aggregation:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: aggregation
+    depends_on:
+      - broker
+      - monitor
+    command:
+      aggregation
+ 
+  navigation:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: navigation
+    depends_on:
+      - broker
+      - monitor
+      - aggregation
+    command:
+      navigation
+ 
+  movement:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: movement
+    depends_on:
+      - broker
+    command:
+      movement
+ 
+  situation:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: situation
+    depends_on:
+      - broker
+    command:
+      situation
+ 
+  extinguishing:
+    image: ffd
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: extinguishing
+    depends_on:
+      - broker
+    command:
+      extinguishing
+ 
